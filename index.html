@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Himanshu | Retail Tech, Ecommerce & Applied Gen AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f0f0f;
+      --ink-muted: #5a5a5a;
+      --ink-faint: #a0a0a0;
+      --paper: #faf9f7;
+      --paper-warm: #f3f1ec;
+      --rule: #e4e0d8;
+      --accent: #c84b2f;
+      --accent-light: #f5ede9;
+      --tag-bg: #eceae5;
+      --tag-text: #3a3a3a;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 249, 247, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .nav-links .nav-cta:hover { color: #a33b22; }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 7vw, 5rem);
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .hero-eyebrow span {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 700px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      margin-top: 0.3rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Focus areas pill row */
+    .focus-areas {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+    .focus-pill {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      letter-spacing: 0.01em;
+    }
+    .focus-pill.accent {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ─── FEATURED ────────────────────────────────────── */
+    .featured-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+    }
+    .featured-card {
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      transition: border-color 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .featured-card:hover { border-color: var(--accent); }
+    .featured-card-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .featured-card h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
+    }
+    .featured-card p {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    .featured-meta {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      margin-top: 1.2rem;
+    }
+    .featured-toc {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-width: 180px;
+    }
+    @media (max-width: 640px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-toc { display: none; }
+    }
+    .toc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+    .toc-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      padding-top: 0.05rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── WRITING FEED ────────────────────────────────── */
+    .writing-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+    .writing-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .post-count {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+    }
+    .post-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .post-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+    .post-item:first-child { border-top: 1px solid var(--rule); }
+    .post-item:hover { opacity: 0.7; }
+    .post-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 2px;
+      background: var(--tag-bg);
+      color: var(--ink-muted);
+      letter-spacing: 0.03em;
+    }
+    .tag.retail { background: #e8f0e8; color: #3a6b3a; }
+    .tag.genai { background: #e8eaf5; color: #3a3a8a; }
+    .tag.ecom { background: #f5ede8; color: #8a4a2a; }
+    .tag.data { background: #eeeae0; color: #6a5a2a; }
+    .post-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+    .post-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+    .post-meta {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      padding-top: 0.25rem;
+      font-family: var(--mono);
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 4rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+    @media (max-width: 640px) {
+      .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .about-wrap h2 {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .about-wrap p {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .about-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .about-link {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .about-link:hover { color: var(--accent); border-color: var(--accent); }
+    .about-side-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 0.8rem;
+      margin-top: 1.8rem;
+    }
+    .about-side-label:first-child { margin-top: 0; }
+    .about-skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .about-skill-list span {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+    }
+
+    /* ─── NEWSLETTER ──────────────────────────────────── */
+    .newsletter-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+    .newsletter-inner {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 4px;
+      padding: clamp(2rem, 5vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .newsletter-copy h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .newsletter-copy p {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      max-width: 380px;
+      line-height: 1.6;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .newsletter-input {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 3px;
+      padding: 0.55rem 1rem;
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { opacity: 0.4; }
+    .newsletter-input:focus { border-color: rgba(255,255,255,0.5); }
+    .newsletter-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 0.55rem 1.2rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: #a33b22; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── UTILITIES ───────────────────────────────────── */
+    .read-link {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 1rem;
+      transition: gap 0.2s;
+    }
+    .read-link:hover { gap: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Himanshu</a>
+    <ul class="nav-links">
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="https://linkedin.com" class="nav-cta">LinkedIn →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    <span>Retail Tech · Ecommerce · Applied Gen AI</span>
+  </div>
+  <h1>Where <em>commerce</em> meets intelligent systems</h1>
+  <p class="hero-sub">
+    Deep dives on Gen AI in retail, ecommerce platform architecture, product data ecosystems, and the real-world patterns that separate working prototypes from production deployments.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Focus Domains</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">Deep</span>
+      <span class="stat-label">Technical Depth</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">Applied</span>
+      <span class="stat-label">Real-World Lens</span>
+    </div>
+  </div>
+  <div class="focus-areas">
+    <span class="focus-pill accent">Gen AI in Retail</span>
+    <span class="focus-pill">Ecommerce Architecture</span>
+    <span class="focus-pill">Product Data & PIM/PXM</span>
+    <span class="focus-pill">AI-Powered Search & Discovery</span>
+    <span class="focus-pill">Supply Chain Intelligence</span>
+    <span class="focus-pill">Commerce Platforms</span>
+  </div>
+</section>
+
+<!-- FEATURED ESSAY -->
+<section class="featured-wrap">
+  <p class="section-label">Featured Essay</p>
+  <a class="featured-card" href="#">
+    <div>
+      <p class="featured-card-tag">Gen AI · Retail</p>
+      <h2>The Retail AI Stack Is Being Rebuilt From the Shelf Up</h2>
+      <p>
+        Product content generation, dynamic pricing, personalized search, and supply chain forecasting — Gen AI isn't replacing the retail stack. It's being inserted at every layer. Here's where it's actually working in production, and where it's still hype.
+      </p>
+      <p class="featured-meta">Mar 2026 · 12 min read</p>
+      <span class="read-link">Read essay →</span>
+    </div>
+    <div class="featured-toc">
+      <div class="toc-item"><span class="toc-num">01</span><span>Why Retail AI Differs From Enterprise AI</span></div>
+      <div class="toc-item"><span class="toc-num">02</span><span>The Five Production-Ready Use Cases</span></div>
+      <div class="toc-item"><span class="toc-num">03</span><span>What Still Fails in the Wild</span></div>
+      <div class="toc-item"><span class="toc-num">04</span><span>Building for Real SKU Complexity</span></div>
+    </div>
+  </a>
+</section>
+
+<!-- WRITING FEED -->
+<section class="writing-wrap" id="writing">
+  <div class="writing-header">
+    <p class="section-label">Recent Writing</p>
+    <span class="post-count">8 Posts</span>
+  </div>
+  <div class="post-list">
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag genai">Gen AI</span><span class="tag ecom">Ecommerce</span></div>
+        <p class="post-title">LLMs as the New Search Layer: Rethinking Product Discovery at Scale</p>
+        <p class="post-desc">Semantic search felt like the finish line. It wasn't. How LLM-native discovery pipelines are changing what relevance even means for large-SKU catalogs.</p>
+      </div>
+      <span class="post-meta">Mar 2026 · 10 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag retail">Retail Tech</span><span class="tag data">Data</span></div>
+        <p class="post-title">GDSN, GTINs, and the Quiet Infrastructure Powering Global Commerce</p>
+        <p class="post-desc">Nobody talks about product data standards until something breaks. A deep look at the syndication layer beneath every shelf tag and ecommerce listing — and why Gen AI makes it more important, not less.</p>
+      </div>
+      <span class="post-meta">Feb 2026 · 14 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag genai">Gen AI</span><span class="tag retail">Retail Tech</span></div>
+        <p class="post-title">Agentic AI in Retail Operations: What Actually Works Beyond the Demo</p>
+        <p class="post-desc">Vendors are showing slick agents that auto-reorder, respond to customer queries, and optimize planograms. Here's the gap between those demos and what's deployable today.</p>
+      </div>
+      <span class="post-meta">Feb 2026 · 11 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag ecom">Ecommerce</span></div>
+        <p class="post-title">Composable Commerce in 2026: When It's the Right Call and When It's a Trap</p>
+        <p class="post-desc">MACH architecture evangelists won the argument. Now teams are living with the reality. A pragmatic breakdown of when to go composable and when the monolith still wins.</p>
+      </div>
+      <span class="post-meta">Jan 2026 · 9 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag genai">Gen AI</span><span class="tag data">Data</span></div>
+        <p class="post-title">PIM Meets LLM: Automating Product Content Without Losing Control</p>
+        <p class="post-desc">PXM platforms are bolting on AI generation features. But AI-generated content at catalog scale introduces accuracy, consistency, and compliance risks most teams aren't prepared for.</p>
+      </div>
+      <span class="post-meta">Jan 2026 · 13 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag retail">Retail Tech</span><span class="tag ecom">Ecommerce</span></div>
+        <p class="post-title">The Hidden Cost of Bad Product Data: A Supply Chain Story</p>
+        <p class="post-desc">Duplicate GTINs, misclassified products, missing attributes — the invisible tax that bad product data places on every downstream system, from warehouse routing to AI training sets.</p>
+      </div>
+      <span class="post-meta">Dec 2025 · 8 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag genai">Gen AI</span></div>
+        <p class="post-title">RAG vs Fine-Tuning for Retail AI Applications: A Decision Framework</p>
+        <p class="post-desc">Both approaches get oversimplified in vendor pitches. A practical framework for choosing between retrieval-augmented generation and fine-tuning based on the actual constraints of retail and ecommerce workloads.</p>
+      </div>
+      <span class="post-meta">Nov 2025 · 11 min</span>
+    </a>
+
+    <a class="post-item" href="#">
+      <div>
+        <div class="post-tags"><span class="tag ecom">Ecommerce</span><span class="tag retail">Retail Tech</span></div>
+        <p class="post-title">Personalization at Scale: The Architecture Beneath the "For You" Experience</p>
+        <p class="post-desc">Personalization is a promise every commerce platform makes. Delivering it at real scale requires a specific set of infrastructure decisions most case studies gloss over.</p>
+      </div>
+      <span class="post-meta">Oct 2025 · 12 min</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-wrap" id="about">
+  <div>
+    <p class="section-label">About</p>
+    <h2>Himanshu</h2>
+    <p>
+      I work at the intersection of retail technology, ecommerce systems, and applied AI — with a particular interest in how large language models and intelligent systems get integrated into the practical, unglamorous infrastructure that powers modern commerce.
+    </p>
+    <p>
+      My focus spans product data ecosystems (PIM/PXM, GDSN, syndication), ecommerce platform architecture, and the emerging patterns in Gen AI deployment across retail and supply chain contexts.
+    </p>
+    <p>
+      I write to think clearly — and to cut through the vendor noise with takes grounded in how these systems actually behave in production.
+    </p>
+    <div class="about-links">
+      <a class="about-link" href="https://linkedin.com">LinkedIn ↗</a>
+      <a class="about-link" href="https://github.com">GitHub ↗</a>
+      <a class="about-link" href="mailto:you@email.com">Email ↗</a>
+    </div>
+  </div>
+  <div>
+    <p class="about-side-label">Focus Areas</p>
+    <div class="about-skill-list">
+      <span>Applied Gen AI</span>
+      <span>Retail Tech & Commerce</span>
+      <span>Product Data / PIM / PXM</span>
+      <span>Ecommerce Architecture</span>
+      <span>Supply Chain Intelligence</span>
+      <span>AI Search & Discovery</span>
+    </div>
+
+    <p class="about-side-label">Industries</p>
+    <div class="about-skill-list">
+      <span>Retail & CPG</span>
+      <span>B2B Ecommerce</span>
+      <span>Supply Chain</span>
+    </div>
+
+    <p class="about-side-label">Domains Covered</p>
+    <div class="about-skill-list">
+      <span>GDSN & Data Standards</span>
+      <span>Composable / MACH</span>
+      <span>LLM Product Applications</span>
+      <span>RAG & Retrieval Systems</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-wrap">
+  <div class="newsletter-inner">
+    <div class="newsletter-copy">
+      <h3>Stay in the loop</h3>
+      <p>New posts on retail tech, ecommerce architecture, and applied Gen AI. No spam — just the depth you came here for.</p>
+    </div>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="your@email.com" />
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Himanshu. Built with intent.</span>
+  <div class="footer-links">
+    <a href="https://linkedin.com">LinkedIn</a>
+    <a href="https://github.com">GitHub</a>
+    <a href="mailto:you@email.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
